@@ -3,51 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compendium : Système de Combat Momentum</title>
+  <title>Système de Combat Daggerheart Homebrew : Le Momentum</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-main: #0f172a;
+      --bg-body: #0b1120;
+      --bg-sidebar: #0f172a;
       --bg-card: #1e293b;
-      --bg-alt: #162032;
-      --border: #334155;
+      --bg-card-alt: #162032;
+      --border-color: #334155;
+      --border-subtle: rgba(255, 255, 255, 0.08);
       --text-main: #f1f5f9;
       --text-muted: #94a3b8;
       --gold: #f59e0b;
-      --gold-dim: #b45309;
+      --gold-dark: #b45309;
+      --gold-light: #fef3c7;
       --crimson: #ef4444;
-      --crimson-dim: #991b1b;
+      --crimson-dark: #991b1b;
       --emerald: #10b981;
-      --cyan: #06b6d4;
-      --font-title: 'Cinzel', Georgia, serif;
-      --font-body: 'Inter', system-ui, sans-serif;
+      --cyan: #38bdf8;
+      --font-heading: 'Cinzel', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      background-color: var(--bg-main);
+      background-color: var(--bg-body);
       color: var(--text-main);
       font-family: var(--font-body);
-      line-height: 1.6;
+      line-height: 1.65;
       display: flex;
       min-height: 100vh;
     }
 
-    /* Sidebar Navigation */
+    /* Navigation latérale */
     aside {
-      width: 280px;
-      background-color: var(--bg-alt);
-      border-right: 1px solid var(--border);
+      width: 300px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
       position: fixed;
       top: 0;
       bottom: 0;
       left: 0;
-      padding: 1.75rem 1.25rem;
+      padding: 2rem 1.25rem;
       overflow-y: auto;
       z-index: 100;
       display: flex;
@@ -56,12 +66,13 @@
     }
 
     .brand {
-      font-family: var(--font-title);
-      font-size: 1.15rem;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
       font-weight: 800;
       color: var(--gold);
-      letter-spacing: 0.5px;
       line-height: 1.3;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
     }
 
     .brand span {
@@ -72,7 +83,7 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      margin-top: 0.25rem;
+      margin-top: 0.35rem;
     }
 
     nav ul {
@@ -99,64 +110,76 @@
       border-left: 3px solid var(--gold);
     }
 
-    /* Main Container */
+    /* Zone de contenu */
     main {
-      margin-left: 280px;
+      margin-left: 300px;
       flex: 1;
-      padding: 2.5rem 3.5rem;
-      max-width: 1100px;
+      padding: 3rem 4.5rem;
+      max-width: 1150px;
     }
 
-    header {
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1.5rem;
+    header.doc-header {
+      margin-bottom: 3.5rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 2rem;
     }
 
-    h1 {
-      font-family: var(--font-title);
-      font-size: 2.25rem;
+    header.doc-header h1 {
+      font-family: var(--font-heading);
+      font-size: 2.35rem;
       color: #fff;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.85rem;
+      line-height: 1.2;
     }
 
-    .lead {
-      color: var(--text-muted);
-      font-size: 1.05rem;
+    header.doc-header p.lead {
+      color: #cbd5e1;
+      font-size: 1.15rem;
+      line-height: 1.6;
     }
 
     section {
-      margin-bottom: 3rem;
-      scroll-margin-top: 2rem;
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 2.5rem;
     }
 
     h2 {
-      font-family: var(--font-title);
-      font-size: 1.5rem;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
       color: var(--gold);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.4rem;
     }
 
     h3 {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       color: #fff;
-      margin: 1.5rem 0 0.75rem 0;
+      margin: 1.75rem 0 0.85rem 0;
       font-weight: 600;
     }
 
-    p { margin-bottom: 1rem; color: #cbd5e1; }
+    h4 {
+      font-size: 1.05rem;
+      color: var(--cyan);
+      margin: 1.25rem 0 0.5rem 0;
+      font-weight: 600;
+    }
 
-    /* Tables */
+    p {
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+    }
+
+    /* Tableaux */
     .table-container {
       overflow-x: auto;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-color);
       border-radius: 8px;
-      margin: 1rem 0;
+      margin: 1.25rem 0;
       background-color: var(--bg-card);
     }
 
@@ -164,618 +187,744 @@
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
 
     th, td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 1.1rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: top;
     }
 
     th {
-      background-color: var(--bg-alt);
+      background-color: var(--bg-card-alt);
       color: var(--text-main);
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       font-size: 0.75rem;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.75px;
     }
 
-    tr:last-child td { border-bottom: none; }
-    tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
+    tr:last-child td {
+      border-bottom: none;
+    }
 
-    /* Callouts & Badges */
+    tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Formats Spéciaux, Badges et Encadrés */
     .badge {
       display: inline-block;
-      padding: 0.15rem 0.5rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 4px;
       font-size: 0.75rem;
       font-weight: 600;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
     }
 
-    .badge-gold { background: rgba(245, 158, 11, 0.15); color: var(--gold); border: 1px solid rgba(245, 158, 11, 0.3); }
-    .badge-red { background: rgba(239, 68, 68, 0.15); color: var(--crimson); border: 1px solid rgba(239, 68, 68, 0.3); }
-    .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-gold {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .badge-red {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--crimson);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    .badge-green {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
 
     .callout {
       background-color: var(--bg-card);
       border-left: 4px solid var(--gold);
       border-radius: 0 8px 8px 0;
-      padding: 1rem 1.25rem;
-      margin: 1rem 0;
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+      color: #cbd5e1;
     }
 
-    .callout-red { border-left-color: var(--crimson); }
-    .callout-cyan { border-left-color: var(--cyan); }
+    .callout-red {
+      border-left-color: var(--crimson);
+      background-color: rgba(153, 27, 27, 0.12);
+    }
+
+    .callout-cyan {
+      border-left-color: var(--cyan);
+      background-color: rgba(56, 189, 248, 0.08);
+    }
 
     .callout-title {
       font-weight: 700;
       font-size: 0.95rem;
       color: #fff;
-      margin-bottom: 0.35rem;
-    }
-
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem;
-    }
-
-    .card-title {
-      font-weight: 700;
       margin-bottom: 0.5rem;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .example-box {
+      background-color: #111c2e;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-left: 4px solid var(--cyan);
+      border-radius: 0 8px 8px 0;
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    .example-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--cyan);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
     }
 
     code {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       background: rgba(255, 255, 255, 0.08);
-      padding: 0.15rem 0.35rem;
+      padding: 0.2rem 0.4rem;
       border-radius: 4px;
-      font-size: 0.85em;
+      font-size: 0.88em;
+      color: #e2e8f0;
     }
 
     ul {
-      margin-left: 1.5rem;
+      margin-left: 1.75rem;
       margin-bottom: 1rem;
       color: #cbd5e1;
     }
 
-    li { margin-bottom: 0.35rem; }
+    li {
+      margin-bottom: 0.4rem;
+    }
 
-    @media (max-width: 900px) {
-      aside { display: none; }
-      main { margin-left: 0; padding: 1.5rem; }
+    @media (max-width: 1024px) {
+      aside {
+        display: none;
+      }
+      main {
+        margin-left: 0;
+        padding: 2rem 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Sidebar Navigation -->
+  <!-- Menu de Navigation Latéral -->
   <aside>
     <div class="brand">
-      MOMENTUM
-      <span>Système Homebrew</span>
+      LE MOMENTUM
+      <span>Compendium Complet</span>
     </div>
     <nav>
       <ul>
-        <li><a href="#intro">Vue d'ensemble</a></li>
-        <li><a href="#pools">Les Réserves (Pools)</a></li>
-        <li><a href="#ip">Initiative Passive (IP)</a></li>
-        <li><a href="#stress">Stress & Vulnérabilité</a></li>
-        <li><a href="#actions-joueurs">Actions des Joueurs</a></li>
-        <li><a href="#actions-stress">Dépenses de Stress</a></li>
-        <li><a href="#resolution">Le Jet (d20 + 2d100)</a></li>
-        <li><a href="#espoir">Dépenses d'Espoir</a></li>
-        <li><a href="#dm-actions">Actions du DM</a></li>
-        <li><a href="#combos">Combos du DM</a></li>
-        <li><a href="#distances">Zones Narratives</a></li>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#section-1">I. Les Ressources et l'Économie</a></li>
+        <li><a href="#section-1-a" style="padding-left: 1.25rem;">A. Pools de Jetons</a></li>
+        <li><a href="#section-1-b" style="padding-left: 1.25rem;">B. Stress & Vulnérabilité</a></li>
+        <li><a href="#section-1-c" style="padding-left: 1.25rem;">C. Récupération</a></li>
+        <li><a href="#section-2">II. Lancement d'Action & Espoir</a></li>
+        <li><a href="#section-2-a" style="padding-left: 1.25rem;">A. Coût PAJ & Stress</a></li>
+        <li><a href="#section-2-b" style="padding-left: 1.25rem;">B. Le Jet (d20 + 2d100)</a></li>
+        <li><a href="#section-2-c" style="padding-left: 1.25rem;">C. Dépenses d'Espoir</a></li>
+        <li><a href="#section-3">III. Le Flux du Momentum</a></li>
+        <li><a href="#section-3-a" style="padding-left: 1.25rem;">A. Perte & Gain</a></li>
+        <li><a href="#section-3-b" style="padding-left: 1.25rem;">B. Actions du DM (Peur)</a></li>
+        <li><a href="#section-3-combos" style="padding-left: 1.25rem;">Combos du DM</a></li>
+        <li><a href="#section-3-c" style="padding-left: 1.25rem;">C. Distance Narrative</a></li>
       </ul>
     </nav>
   </aside>
 
-  <!-- Main Content -->
+  <!-- Contenu Principal -->
   <main>
-    <header id="intro">
-      <h1>Système de Combat : Le Momentum</h1>
-      <p class="lead">Une alternative dynamique à l'initiative classique D&D 5e, inspirée par Daggerheart, centrée sur un bras de fer continu entre les joueurs et le Maître du Jeu régulé par l'Espoir et le Stress.</p>
+    <header class="doc-header" id="intro">
+      <h1>Système de Combat Daggerheart Homebrew : Le Momentum (Règles Complètes)</h1>
+      <p class="lead">Ce système remplace l'initiative traditionnelle D&D 5e par un flux d'action dynamique et une économie de ressources psychologiques (Espoir et Stress).</p>
     </header>
 
-    <!-- SECTION : POOLS -->
-    <section id="pools">
-      <h2>I. Les Réserves et l'Économie</h2>
-      <p>Le combat fonctionne en cycle fermé grâce à la circulation continue des jetons d'action entre les deux camps :</p>
-      
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Pool</th>
-              <th>Détenteur</th>
-              <th>Rôle & Flux</th>
-              <th>Plafond</th>
-              <th>Calcul Initial</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>PAJ</strong> (Pool d'Action Joueur)</td>
-              <td>Joueurs (Collectif)</td>
-              <td>Réserve d'actions des PJ & Alliés. Dépensés &rarr; vont dans le PADM.</td>
-              <td>Variable</td>
-              <td>&sum; IP de tous les PJ et PNJ Alliés</td>
-            </tr>
-            <tr>
-              <td><strong>PADM</strong> (Pool d'Action DM)</td>
-              <td>DM (Collectif)</td>
-              <td>Réserve d'actions des Adversaires. Dépensés &rarr; vont dans le PAJ.</td>
-              <td>Variable</td>
-              <td>&sum; IP de tous les Adversaires</td>
-            </tr>
-            <tr>
-              <td><strong>PP</strong> (Pool de Peur)</td>
-              <td>DM (Stratégique)</td>
-              <td>Carburant pour Combos et Interjections.</td>
-              <td><span class="badge badge-red">Max 30</span></td>
-              <td>Report de la session précédente + (Total Combattants &times; 2)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <!-- SECTION I -->
+    <section id="section-1">
+      <h2>I. Les Ressources et l'Économie</h2>
 
-    <!-- SECTION : INITIATIVE PASSIVE -->
-    <section id="ip">
-      <h2>II. L'Initiative Passive (IP)</h2>
-      <div class="callout callout-cyan">
-        <div class="callout-title">Formule de l'IP</div>
-        <code>IP = 10 + Modificateur de Dextérité + Bonus d'initiative</code>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem; margin-bottom: 0;">Inclut tous les bonus permanents ou temporaires : objets magiques, sorts, potions, dons ou capacités de classe.</p>
-      </div>
+      <!-- I.A -->
+      <div id="section-1-a">
+        <h3>A. Les Pools de Jetons (Momentum)</h3>
+        <p>Le combat est géré par la circulation de Jetons d'Action entre les deux camps (Joueurs et DM).</p>
 
-      <p>L'IP détermine des avantages ou malus sur l'ouverture de combat des Joueurs <em>(le DM ne profite pas de ce barème)</em> :</p>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Initiative Passive (IP)</th>
-              <th>Statut d'Ouverture</th>
-              <th>Coût en Jetons du PAJ</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>15 et plus</strong></td>
-              <td><span class="badge badge-green">2 Actions Gratuites</span></td>
-              <td><strong>0 jeton</strong> pour les 2 premières actions</td>
-            </tr>
-            <tr>
-              <td><strong>13 – 14</strong></td>
-              <td><span class="badge badge-green">1 Action Gratuite</span></td>
-              <td><strong>0 jeton</strong> pour la 1ère action</td>
-            </tr>
-            <tr>
-              <td><strong>11 – 12</strong></td>
-              <td>Standard</td>
-              <td>Coût normal (2 jetons par action de base)</td>
-            </tr>
-            <tr>
-              <td><strong>9 et moins</strong></td>
-              <td><span class="badge badge-red">1 Action Malus</span></td>
-              <td><strong>3 jetons</strong> pour la 1ère action (quel que soit le type)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- SECTION : STRESS ET RÉCUPÉRATION -->
-    <section id="stress">
-      <h2>III. Stress, Vulnérabilité & Récupération</h2>
-      
-      <div class="grid-cards">
-        <div class="card">
-          <div class="card-title">Jauge de Stress <span class="badge badge-gold">6 Cases</span></div>
-          <p style="font-size: 0.9rem;">Conservée entre les rencontres. Utilisable volontairement pour forcer l'issue d'une action.</p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Pool</th>
+                <th>Détenteur</th>
+                <th>Rôle et Flux</th>
+                <th>Plafond</th>
+                <th>Calcul de Départ (Début de Combat)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pool d'Action Joueur (PAJ)</strong></td>
+                <td>Joueurs (Collectif)</td>
+                <td>Réserve d'Actions.</td>
+                <td>Variable</td>
+                <td>Somme Initiative Passive des PJ/PNJ Alliés</td>
+              </tr>
+              <tr>
+                <td><strong>Pool d'Action DM (PADM)</strong></td>
+                <td>DM (Collectif)</td>
+                <td>Réserve d'Actions des Adversaires.</td>
+                <td>Variable</td>
+                <td>Somme Initiative Passive des Adversaires</td>
+              </tr>
+              <tr>
+                <td><strong>Pool de Peur (PP)</strong></td>
+                <td>DM (Stratégique)</td>
+                <td>Réserve pour Combos et Interjections.</td>
+                <td><strong>30 Jetons</strong> (Max 30 jetons)</td>
+                <td>Jetons accumulés de la session précédente + (# Acteurs Totaux &times; 2)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="card">
-          <div class="card-title">Vulnérabilité <span class="badge badge-red">6/6 Stress</span></div>
-          <p style="font-size: 0.9rem;"><strong>Désavantage</strong> sur toutes vos actions. <strong>Avantage</strong> pour toutes les actions ennemies menées contre vous.</p>
+
+        <div class="callout callout-cyan">
+          <div class="callout-title">Flux des Jetons d'Action :</div>
+          <p>• <strong>Joueurs Agissent :</strong> Jetons puisés du PAJ &rarr; vont dans le PADM.<br>
+          • <strong>Adversaires Agissent :</strong> Jetons puisés du PADM &rarr; vont dans le PAJ.</p>
         </div>
-        <div class="card">
-          <div class="card-title">Overflow <span class="badge badge-red">Ratio 1:2</span></div>
-          <p style="font-size: 0.9rem;">Tout point de Stress excédentaire au-delà de 6 est converti immédiatement en <strong>2 Dégâts de Points de Vie (HP)</strong>.</p>
+
+        <div class="callout">
+          <div class="callout-title">Initiative Passive (IP) :</div>
+          <code>IP = 10 + Score de Dextérité + Tout autre bonus d'initiative</code>
+          <p style="margin-top: 0.6rem; font-size: 0.9rem; margin-bottom: 0;">
+            <strong>Note :</strong> Le terme <em>"Tout autre bonus d'initiative"</em> inclut les bonus octroyés par des objets magiques, des potions, des effets de sorts (permanents ou temporaires), et toute autre capacité de classe ou de race qui ajoute un bonus au jet d'initiative normal.
+          </p>
         </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Initiative Passive (IP)</th>
+                <th>Statut de l'Action (X)</th>
+                <th>Coût en Jetons du PAJ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>15 et plus</strong></td>
+                <td><span class="badge badge-green">2 Actions Gratuites</span></td>
+                <td>0 Jeton pour les 2 premières Actions.</td>
+              </tr>
+              <tr>
+                <td><strong>13 – 14</strong></td>
+                <td><span class="badge badge-green">1 Action Gratuite</span></td>
+                <td>0 Jeton pour la première Action.</td>
+              </tr>
+              <tr>
+                <td><strong>11 – 12</strong></td>
+                <td>0 Action Gratuite</td>
+                <td>Coût de base : 2 Jetons par Action.</td>
+              </tr>
+              <tr>
+                <td><strong>9 et moins</strong></td>
+                <td><span class="badge badge-red">1 Action Malus</span></td>
+                <td>3 Jetons pour la première Action. Coût de base pour les suivantes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><em>Note : Le DM ne profite pas du barème ci-dessus.</em></p>
       </div>
 
-      <h3>Récupération du Stress</h3>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Type de Repos</th>
-              <th>Réduction de Stress</th>
-              <th>Coût en Espoir</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Repos Court</strong></td>
-              <td>Dépense d'un Dé de Vie &rarr; Lance un Dé Mental (1d6). Réduction = <code>&lfloor;Résultat / 2&rfloor;</code> (Min. 1).<br><em>Méditer réduit également le stress de 1 par heure.</em></td>
-              <td>Perte de <strong>1 Espoir</strong> par point de Stress ainsi retiré.</td>
-            </tr>
-            <tr>
-              <td><strong>Repos Long</strong></td>
-              <td>Stress réduit à <strong>0</strong>.</td>
-              <td>Perte de <strong>1 Espoir</strong> par point de Stress ainsi effacé <em>(l'Espoir n'est pas restauré au max)</em>.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- SECTION : ACTIONS DES JOUEURS -->
-    <section id="actions-joueurs">
-      <h2>IV. Coût des Actions Joueur (Dépense PAJ)</h2>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Type d'Action</th>
-              <th>Coût PAJ</th>
-              <th>Description & Exemples</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Mineure / Mouvement</strong></td>
-              <td><span class="badge badge-gold">1 Jeton</span></td>
-              <td>Action bonus, déplacement, gérer son mental (réduire le stress de 1).</td>
-            </tr>
-            <tr>
-              <td><strong>De Base</strong></td>
-              <td><span class="badge badge-gold">2 Jetons</span></td>
-              <td>Attaque simple, incantation de sort standard, capacité spéciale.</td>
-            </tr>
-            <tr>
-              <td><strong>Majeure</strong></td>
-              <td><span class="badge badge-gold">3 Jetons</span></td>
-              <td>Manœuvre complexe, action combinée à un effet narratif fort.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- SECTION : ACTIONS LIÉES AU STRESS -->
-    <section id="actions-stress">
-      <h2>V. Dépense Volontaire de Stress (Push-Your-Luck)</h2>
-      <p>Déclaré au moment de l'action pour booster immédiatement l'impact :</p>
-
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Coût en Stress</th>
-              <th>Effet sur l'Action</th>
-              <th>Résolution Mécanique</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1 Stress</strong></td>
-              <td>Favoriser les Chances</td>
-              <td>Octroie l'<strong>Avantage</strong> au jet (ou annule un Désavantage).</td>
-            </tr>
-            <tr>
-              <td><strong>2 Stress</strong></td>
-              <td>Ajouter un Effet Narratif</td>
-              <td>Jet standard. En cas de succès, applique un effet narratif fort impactant le gameplay (ex : renverser, débuff).</td>
-            </tr>
-            <tr>
-              <td><strong>3+ Stress</strong></td>
-              <td>Garantie Totale & Effets</td>
-              <td><strong>Succès automatique (aucun jet requis)</strong>. Applique tous les effets narratifs liés. Tout jet de sauvegarde requis pour la cible est <strong>automatiquement raté</strong>.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout callout-red">
-        <div class="callout-title">Règles des Effets Multiples sous Stress :</div>
+      <!-- I.B -->
+      <div id="section-1-b" style="margin-top: 2rem;">
+        <h3>B. Le Système Stress et Vulnérabilité</h3>
         <ul>
-          <li><strong>Exclusivité :</strong> Les paliers 1 et 2 ne se cumulent pas (payer 2 Stress ne confère pas l'Avantage).</li>
-          <li><strong>Multi-effets :</strong> Le palier 3 coûte 3 Stress de base + <strong>1 Stress par effet additionnel</strong>.</li>
-          <li><strong>Paiement Intégral Obligatoire :</strong> Une action à plusieurs effets ne peut être jouée sous stress que si <em>l'ensemble</em> des effets voulus a été payé en amont.</li>
+          <li><strong>Stress Maximum :</strong> 6 Cases (conservées entre les rencontres).</li>
+          <li><strong>Vulnérabilité :</strong> Atteindre 6/6 Stress impose le Désavantage sur toutes les actions du personnage et toutes actions contre le personnage sont avantagées.</li>
+          <li><strong>Règle de l'Overflow :</strong> Tout Stress supplémentaire sur un personnage plein se convertit en Dégâts de Vie (HP) au ratio 1:2. (1 stress pour 2 HP).</li>
         </ul>
       </div>
-    </section>
 
-    <!-- SECTION : RESOLUTION D20 + 2D100 -->
-    <section id="resolution">
-      <h2>VI. Résolution des Actions (1d20 + 2d100)</h2>
-      <p>À chaque test (hors réactions), lancez <strong>1d20</strong> (succès/échec vs CA ou DD) + <strong>2d100</strong> (Espoir vs Peur pour déterminer le Moral) :</p>
-      
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Jet d20</th>
-              <th>Déterminant (d100)</th>
-              <th>Conséquence Narrative</th>
-              <th>Impact Ressources</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge badge-green">Réussite</span></td>
-              <td><strong>Espoir &uarr;</strong></td>
-              <td>Succès avec bonus narratif</td>
-              <td>Joueur gagne <strong>+1 Espoir</strong></td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-green">Réussite</span></td>
-              <td><strong>Peur &uarr;</strong></td>
-              <td>Succès sur le fil avec complication</td>
-              <td>DM gagne <strong>+1 Peur</strong></td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-red">Échec</span></td>
-              <td><strong>Espoir &uarr;</strong></td>
-              <td>Échec, mais opportunité héroïque</td>
-              <td>Joueur gagne <strong>+1 Espoir</strong></td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-red">Échec</span></td>
-              <td><strong>Peur &uarr;</strong></td>
-              <td>Échec critique narratif, le chaos s'installe</td>
-              <td>DM gagne <strong>+1 Peur</strong></td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- I.C -->
+      <div id="section-1-c" style="margin-top: 2rem;">
+        <h3>C. Récupération des Ressources</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Repos</th>
+                <th>Stress</th>
+                <th>Espoir</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Repos Court</strong></td>
+                <td>
+                  Se réduit via le Dé Mental (1d6), obtenu en dépensant un Dé de Vie (HP). Réduction = Score Total / 2 Minimum 1.<br>
+                  Méditer permet de réduire le stress de 1 par heure.
+                </td>
+                <td>Le joueur perd 1 Jeton d'Espoir pour chaque point de Stress ainsi réduit.</td>
+              </tr>
+              <tr>
+                <td><strong>Repos Long</strong></td>
+                <td>Réduit à 0.</td>
+                <td>Le joueur perd 1 Jeton d'Espoir pour chaque point de Stress ainsi réduit (l'Espoir n'est pas restauré au maximum).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION : ESPOIR -->
-    <section id="espoir">
-      <h2>VII. Dépenses d'Espoir</h2>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Coût</th>
-              <th>Capacité</th>
-              <th>Conditions & Restrictions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1 Espoir</strong></td>
-              <td><strong>Aider un Allié</strong></td>
-              <td>Si justifiable narrativement, octroie <strong>+1d4</strong> au jet d'un autre joueur (hors dégâts).</td>
-            </tr>
-            <tr>
-              <td><strong>1 Espoir + 1 PAJ</strong></td>
-              <td><strong>Annuler du Stress</strong></td>
-              <td>Réduit immédiatement 1 point de Dégât de Stress subi (par point annulé).</td>
-            </tr>
-            <tr>
-              <td><strong>1 Espoir</strong></td>
-              <td><strong>Contre-Action</strong></td>
-              <td>Riposte immédiate après blocage/esquive réussi. <em>Interdite si le DM est en Combo. Échec = DM garde la main + action gratuite.</em></td>
-            </tr>
-            <tr>
-              <td><strong>2 Espoir</strong></td>
-              <td><strong>Amélioration Perso</strong></td>
-              <td>Avantage sur votre jet <strong>OU</strong> doublement du bonus de Maîtrise sur un JS / Caractéristique (x4 avec Expertise).</td>
-            </tr>
-            <tr>
-              <td><strong>3 Espoir + 2 PAJ</strong></td>
-              <td><strong>Attaque Coordonnée</strong></td>
-              <td><strong>1/session/personnage</strong>. Exactement 2 joueurs. Attaque combinée pour le coût d'une seule action : ils gardent le meilleur dé. <em>Si les deux échouent, le Momentum est perdu.</em></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- SECTION II -->
+    <section id="section-2">
+      <h2>II. Lancement de l'Action et Dépense d'Espoir</h2>
+
+      <!-- II.A -->
+      <div id="section-2-a">
+        <h3>A. Coût de l'Action des Joueurs (Dépense du PAJ)</h3>
+        <p>Le coût des actions est basé sur le type d’action :</p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Type d'Action</th>
+                <th>Coût en Jetons du PAJ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Mineure / Mouvement</strong><br>
+                  <small style="color: var(--text-muted);">ex : action bonus, gérer son mental (diminuer le stress de 1)</small>
+                </td>
+                <td><span class="badge badge-gold">1 Jeton</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>De Base (ex : Attaque simple, sort)</strong><br>
+                  <small style="color: var(--text-muted);">ex : action normal, capacité spéciale, etc</small>
+                </td>
+                <td><span class="badge badge-gold">2 Jetons</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Majeure (ex : manœuvre complexe)</strong><br>
+                  <small style="color: var(--text-muted);">ex : action affublé d’un effet narratif</small>
+                </td>
+                <td><span class="badge badge-gold">3 Jetons</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Tableau des Actions et Coûts Liés au Stress</h4>
+        <p>Le joueur peut choisir de marquer volontairement du Stress pour ajouter des effets à son Action (au moment où l'Action est déclarée).</p>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Coût en Stress (Marqué)</th>
+                <th>Effet sur l'Action</th>
+                <th>Conséquences du Jet</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1 marque de Stress</strong></td>
+                <td>Favoriser les Chances</td>
+                <td>Le joueur bénéficie de l'Avantage sur son jet, OU annule le Désavantage s'il était imposé (joue normalement).</td>
+              </tr>
+              <tr>
+                <td><strong>2 marques de Stress</strong></td>
+                <td>Ajouter un Effet Narratif</td>
+                <td>L'Action est jouée normalement (sans Avantage/Désavantage modifié). Si elle réussit, l'Action applique un effet narratif impactant le gameplay (ex : Applique un débuff, renverse la cible, etc.).</td>
+              </tr>
+              <tr>
+                <td><strong>3 marques de Stress</strong></td>
+                <td>Garantie Totale et Effet</td>
+                <td>L'Action réussit automatiquement (pas de jet requis). L'Action applique également tout effet narratif impactant le gameplay lié à l'action.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Règle d'Application Importante :</div>
+          <p><strong>Exclusivité :</strong> Les effets de 1 Stress et 2 Stress ne se cumulent pas (si le joueur paie 2 Stress, il ne gagne pas l'Avantage lié au 1 Stress).</p>
+        </div>
+
+        <div class="callout callout-red">
+          <div class="callout-title">Règles d'Application pour les Effets Multiples :</div>
+          <p>• <strong>Coût des Effets :</strong> Le coût de base est de 3 Dégâts de Stress, auquel s'ajoute +1 Dégât de Stress par effet narratif impactant le gameplay que l’action permet d’appliquer (au-delà du premier effet).<br>
+          • <strong>Garantie des Jets de Sauvegarde :</strong> Si l'Action appliquée comporte des effets nécessitant un jet de sauvegarde de la cible (PNJ ou Adversaire), le jet de sauvegarde est automatiquement raté par la cible.<br>
+          • <strong>Règle du Paiement Total :</strong> Une action comportant plusieurs effets ne peut être lancée sous Stress si tous les effets que le joueur souhaite appliquer n'ont pas été payés par les Dégâts de Stress correspondants.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="example-title">Exemple d'Application :</div>
+          <p>Si l'Action Majeure de Cork inflige des dégâts ET tente de renverser l'ennemi (Effet 1) ET de le repousser de a une distance proche (Effet 2), le coût total de Stress pour garantir le tout serait : <strong>3 (Base) + 1 (pour l'effet de repoussement) = 4 Dégâts de Stress</strong>. Le jet de sauvegarde de Force de l'ennemi pour éviter d'être renversé est automatiquement un échec.</p>
+        </div>
+      </div>
+
+      <!-- II.B -->
+      <div id="section-2-b" style="margin-top: 2rem;">
+        <h3>B. Le Jet d'Action (d20 + 2d100)</h3>
+        <p>A chaque lancé de dé qu' un joueur fera (sauf réaction), il lancera un d20 pour déterminer la réussite et 2 d100 pour déterminer son Moral.</p>
+        <p>Le résultat du jet détermine les conséquences et les ressources obtenues :</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Jet D20</th>
+                <th>Détermination (d100)</th>
+                <th>Conséquence Narrative</th>
+                <th>Gain/Perte de Ressource</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge badge-green">Réussi</span></td>
+                <td><strong>Espoir</strong></td>
+                <td>Succès avec Bonus narratif.</td>
+                <td>Joueur gagne 1 Espoir.</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-red">Échec</span></td>
+                <td><strong>Espoir</strong></td>
+                <td>Échec, mais le joueur est récompensé.</td>
+                <td>Joueur gagne 1 Espoir.</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-red">Échec</span></td>
+                <td><strong>Peur</strong></td>
+                <td>Échec, le chaos s'installe.</td>
+                <td>DM gagne 1 Peur.</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-green">Réussi</span></td>
+                <td><strong>Peur</strong></td>
+                <td>Succès, mais avec un Malus narratif.</td>
+                <td>DM gagne 1 Peur.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- II.C -->
+      <div id="section-2-c" style="margin-top: 2rem;">
+        <h3>C. Dépense d'Espoir et Capacités de Combat</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Coût en Espoir</th>
+                <th>Effet</th>
+                <th>Conditions Spéciales</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1 Espoir</strong></td>
+                <td><strong>Aider un Allié :</strong> Si justifiable narrativement, octroie +1d4 au jet d un autre joueur (sauf dégâts)</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td><strong>1 Espoir par stress + 1 jeton d action</strong></td>
+                <td><strong>Annuler Stress :</strong> Réduire 1 point de Dégât de Stress subi.</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td><strong>1 Espoir</strong></td>
+                <td><strong>Contre-Action :</strong> Tenter une action immédiate après un blocage/esquive.</td>
+                <td>Interdite si le DM est en Combo. Échec de la Contre-Action = DM garde la main + action gratuite.</td>
+              </tr>
+              <tr>
+                <td><strong>2 Espoir</strong></td>
+                <td><strong>Amélioration Perso :</strong> Avantage sur votre jet OU double de votre Maîtrise (JS/Caractéristique only).</td>
+                <td>Un personnage avec Expertise pourrait obtenir un bonus de X4 au lieu de x2. N/A</td>
+              </tr>
+              <tr>
+                <td><strong>3 Espoir + 2 jetons d action</strong></td>
+                <td><strong>Attaque Coordonnée</strong></td>
+                <td>1 utilisation par personnage par session. Doit être fait par deux joueurs. Les joueurs font une attaque combinée pour le coût d’une action. Les joueurs choisissent le meilleur jet de dé. Momentum perdu si les deux joueurs échouent.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION : ACTIONS DU DM -->
-    <section id="dm-actions">
-      <h2>VIII. Le Tour du DM & Les Menaces</h2>
-      
-      <h3>Actions des Adversaires (Dépense PADM vers PAJ)</h3>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Tier</th>
-              <th>Catégorie</th>
-              <th>Coût PADM</th>
-              <th>Équivalent / Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>I</strong></td>
-              <td>Mineure / Mouvement</td>
-              <td>1 Jeton</td>
-              <td>Mouvement complet, interaction simple, action bonus.</td>
-            </tr>
-            <tr>
-              <td><strong>II</strong></td>
-              <td>De Base</td>
-              <td>2 Jetons</td>
-              <td>Attaque simple, sort standard, manœuvre d'escalade, etc.</td>
-            </tr>
-            <tr>
-              <td><strong>III</strong></td>
-              <td>Majeure</td>
-              <td>3 Jetons</td>
-              <td>Attaque avec effet narratif ou débuff lourd (Stress, chute, etc.).</td>
-            </tr>
-            <tr>
-              <td><strong>IV</strong></td>
-              <td>Unique</td>
-              <td>Variable</td>
-              <td>Capacités d'Adversaires légendaires (défini par leur fiche).</td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- SECTION III -->
+    <section id="section-3">
+      <h2>III. Le Flux du Momentum (Bras de Fer)</h2>
+
+      <!-- III.A -->
+      <div id="section-3-a">
+        <h3>A. Perte et Gain de Momentum</h3>
+        <p>Le Momentum est conservé par les joueurs tant qu'ils réussissent leurs actions.</p>
+        <p><strong>Si un joueur rate son action :</strong> Le DM gagne 1 Jeton de Peur. Le groupe doit choisir : Garder le Momentum (coût en Espoir) OU Passer la main au DM.</p>
+        <p><strong>Cout pour Garder le Momentum :</strong> Égal au nombre total d'actions effectuées (réussies ou échouées) depuis le dernier échec, plus 1. <em>Minimum toujours de 1.</em></p>
+        <div class="callout callout-red">
+          <div class="callout-title">Perte Critique :</div>
+          <p>• Si un <strong>joueur fait un 1 Naturel</strong> sur son jet, le DM récupère le Momentum et gagne 2 jetons Peur.<br>
+          • Si le <strong>DM fait un 1 Naturel</strong> sur son jet, le DM perd le Moment un. Les joueurs gagnent tous 1 Espoir et 2 Jetons sont transférés du PADM au PAJ.</p>
+        </div>
       </div>
 
-      <div class="callout callout-red">
-        <div class="callout-title">Règles Spéciales du DM :</div>
+      <!-- III.B -->
+      <div id="section-3-b" style="margin-top: 2rem;">
+        <h3>B. Les Actions du DM (Utilisation de la Peur)</h3>
+        <p>Le DM agit lorsque le Momentum lui est passé.</p>
+
+        <h4>Actions des Adversaires et Coût en Jetons d'Action (PADM)</h4>
+        <p>Le coût des actions du DM est basé sur la catégorie d'action. Les Jetons sont puisés du PADM et vont dans le PAJ (Pool d'Action Joueur) une fois l'action terminée.</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Catégorie d'Action</th>
+                <th>Coût en Jetons PADM</th>
+                <th>Équivalent D&D 5e / Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>I</strong></td>
+                <td>Mineure / Mouvement</td>
+                <td>1 Jeton</td>
+                <td>Un mouvement complet, une action gratuite, ou une action bonus simple (dégainer une arme, ouvrir une porte).</td>
+              </tr>
+              <tr>
+                <td><strong>II</strong></td>
+                <td>De Base</td>
+                <td>2 Jetons</td>
+                <td>L'Action standard (Attaque simple, incantation d'un sort, interaction complexe, escalader, jeter un objet, etc.).</td>
+              </tr>
+              <tr>
+                <td><strong>III</strong></td>
+                <td>Majeure</td>
+                <td>3 Jetons</td>
+                <td>Une Action de Base avec un Effet Narratif impactant supplémentaire (ex : infliger un débuff, appliquer un désavantage, renverser la cible, infliger des dégâts de Stress).</td>
+              </tr>
+              <tr>
+                <td><strong>IV</strong></td>
+                <td>Unique</td>
+                <td>Coût Variable</td>
+                <td>Actions Légendaires ou des capacités spéciales d'Adversaires de haut niveau (le coût est défini par la fiche de l'Adversaire)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Règles de Dépense Spéciales du DM :</div>
+          <p>• <strong>Action Gratuite au Début du Tour :</strong> La première action du DM, lorsque le Momentum lui est passé (sauf en cas d’Interjection), est gratuite (0 PADM dépensé) si elle est de catégorie Mineure ou De Base.<br>
+          • <strong>Première Action Majeure/Unique :</strong> Si la première action du DM est Majeure ou Unique, le coût PADM est réduit :<br>
+          &nbsp;&nbsp;– <em>Majeure :</em> Coûte 3 - 1 = <strong>2 Jetons PADM</strong>.<br>
+          &nbsp;&nbsp;– <em>Unique :</em> Coûte <strong>(Coût Unique - 2) Jetons PADM</strong>.<br>
+          • Durant la phase d’action du DM, les actions entreprisent par les Adversaires doivent être incrémentales en termes de puissance (I &larr;&rarr; II &rarr; III &rarr; IV) et peuvent sauter des tiers. L’exception à la règle est que le tier I et II sont considérés comme interchangeable.</p>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Action du DM</th>
+                <th>Coût PADM</th>
+                <th>Coût en Peur (PP)</th>
+                <th>Rôle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Momentum Break</strong></td>
+                <td>0</td>
+                <td>Variable - Démarre à 2 et réduit de 1 par Momentum gardé par les joueurs. Peut être négatif</td>
+                <td>Déclenché uniquement si les joueurs essaient de Garder le Momentum. Brise la séquence.</td>
+              </tr>
+              <tr>
+                <td><strong>Interjection</strong></td>
+                <td>+ Coût PADM</td>
+                <td>3 PP</td>
+                <td>Force l'action d'un Adversaire à tout moment (hors du tour normal). Ne profite pas de la réduction de coûts.</td>
+              </tr>
+              <tr>
+                <td><strong>Combo</strong></td>
+                <td>+ Coût PADM</td>
+                <td>3 PP</td>
+                <td>Annoncé par le DM. Enchaînement d'actions progressives (Min &rarr; Base &rarr; Maj &rarr; Uni) qui ne peut être interrompu. Règles Strictes de Progressivité.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- COMBOS -->
+      <div id="section-3-combos" style="margin-top: 2rem;">
+        <h3>Conditions pour le Déclenchement et la Validité d'un Combo du DM</h3>
+        <p>Le Combo est un enchaînement consécutif d'actions visant à maintenir la pression narrative qui ne peut être interrompu sauf en cas de 1 naturel.</p>
+
+        <h4>I. Déclenchement et Coût</h4>
         <ul>
-          <li><strong>Ouverture Gratuite :</strong> La 1ère action du tour du DM est gratuite (0 PADM) si Tier I ou II. Si Majeure : coût 2 (3-1). Si Unique : coût (Unique - 2).</li>
-          <li><strong>Progressivité :</strong> Les actions doivent monter en puissance (I &harr; II &rarr; III &rarr; IV). Les Tiers I et II sont interchangeables.</li>
-          <li><strong>Garder le Momentum :</strong> Si les PJ ratent un jet, ils peuvent dépenser en Espoir : <code>Actions depuis le dernier échec + 1</code> (min. 1). Le DM gagne alors +1 jeton PADM.</li>
-          <li><strong>1 Naturel :</strong> 
-            PJ fait un '1' &rarr; DM récupère le Momentum + gagne 2 Peur.<br>
-            DM fait un '1' &rarr; DM perd le Momentum + tous les PJ gagnent 1 Espoir + 2 jetons passent du PADM au PAJ.
+          <li><strong>Coût de Déclenchement :</strong> Le DM dépense 3 Jetons de Peur (PP) pour annoncer le lancement du Combo et sa longueur.</li>
+          <li><strong>Paiement des Actions :</strong> Chaque action entreprise pendant le Combo doit être payée par des Jetons d'Action (PADM).</li>
+          <li><strong>Coût Réduit :</strong> Le coût de chaque action durant le Combo est identique au coût réduit de la première action du DM :
+            <ul>
+              <li>Mineure/Base : Coût PADM de <strong>0</strong>.</li>
+              <li>Majeure : Coût PADM de <strong>2</strong> (3-1).</li>
+              <li>Unique : Coût PADM de <strong>(Coût Unique - 2)</strong>.</li>
+            </ul>
           </li>
         </ul>
-      </div>
 
-      <h3>Dépenses du Pool de Peur (PP)</h3>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Manœuvre</th>
-              <th>Coût PP</th>
-              <th>Coût PADM</th>
-              <th>Effet</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Momentum Break</strong></td>
-              <td>Variable (&le; 2)</td>
-              <td>0 Jeton</td>
-              <td>Démarre à 2 PP et réduit de 1 par Momentum gardé par les PJ (peut être négatif). Brise leur tentative de conserver la main.</td>
-            </tr>
-            <tr>
-              <td><strong>Interjection</strong></td>
-              <td>3 PP</td>
-              <td>Coût plein</td>
-              <td>Active un monstre immédiatement hors de son tour. Pas de réduction de coût.</td>
-            </tr>
-            <tr>
-              <td><strong>Combo</strong></td>
-              <td>3 PP</td>
-              <td>Coût réduit</td>
-              <td>Enchaînement inarrêtable d'actions progressives.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+        <h4>II. Règles de Construction (Validité du Combo)</h4>
+        <p>Pour qu'un Combo soit valide, il doit respecter les conditions de progressivité et les limitations de catégories :</p>
 
-    <!-- SECTION : COMBOS -->
-    <section id="combos">
-      <h2>IX. Règles Strictes des Combos du DM</h2>
-      <p>Pour 3 PP, le DM annonce le lancement et la longueur de sa chaîne d'attaques.</p>
-
-      <div class="grid-cards">
-        <div class="card">
-          <div class="card-title">Coûts Réduits</div>
-          <p style="font-size: 0.85rem;">
-            • Mineure / Base : <strong>0 PADM</strong><br>
-            • Majeure : <strong>2 PADM</strong> (3-1)<br>
-            • Unique : <strong>Coût - 2</strong>
-          </p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Règle</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Progressivité</strong></td>
+                <td>Les actions entreprises doivent être progressives (ou égales au type d'action précédente) : I &larr;&rarr; II &rarr; III &rarr; IV</td>
+              </tr>
+              <tr>
+                <td><strong>Longueur Minimale</strong></td>
+                <td>Le Combo doit être composé d'au moins 3 actions consécutives réussies.</td>
+              </tr>
+              <tr>
+                <td><strong>Fin du Combo</strong></td>
+                <td>Le Combo doit se terminer par une action de catégorie Base, Majeure ou Unique.</td>
+              </tr>
+              <tr>
+                <td><strong>Exclusion</strong></td>
+                <td>Un Combo ne peut pas être composé uniquement d'actions Majeures ou Uniques.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="card">
-          <div class="card-title">Structure Obligatoire</div>
-          <p style="font-size: 0.85rem;">
-            • Min. 3 actions consécutives réussies.<br>
-            • Progressif (I &harr; II &rarr; III &rarr; IV).<br>
-            • Fin sur Base, Majeure ou Unique.
-          </p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Catégorie d'Action</th>
+                <th>Limite Max par Combo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mineure (Mi)</td>
+                <td><strong>3</strong></td>
+              </tr>
+              <tr>
+                <td>Base (B)</td>
+                <td><strong>3</strong></td>
+              </tr>
+              <tr>
+                <td>Majeure (Ma)</td>
+                <td><strong>2</strong></td>
+              </tr>
+              <tr>
+                <td>Unique (U)</td>
+                <td><strong>1</strong></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="card">
-          <div class="card-title">Plafonds par Combo</div>
-          <p style="font-size: 0.85rem;">
-            • Mineure (Mi) : <strong>Max 3</strong><br>
-            • Base (B) : <strong>Max 3</strong><br>
-            • Majeure (Ma) : <strong>Max 2</strong><br>
-            • Unique (U) : <strong>Max 1</strong>
-          </p>
+
+        <h4>III. Conséquences et Fin du Combo</h4>
+        <div class="callout callout-red">
+          <div class="callout-title">Conséquence d'Échec :</div>
+          <p>• <strong>Si un Adversaire échoue un jet d'action durant le Combo :</strong><br>
+          Les joueurs gagnent tous 1 Jeton d'Espoir.<br>
+          Le Combo continue jusqu'à sa fin (tel que déclaré initialement par le DM).<br><br>
+          • <strong>Si un Adversaire échoue un jet d'action durant le Combo en faisant un 1 naturel :</strong><br>
+          Les joueurs gagnent tous 1 Jeton d'Espoir.<br>
+          Le Combo s’arrête et le Momentum passe aux joueurs. Ils gagnent les jetons d’action de l’action qui a raté.</p>
         </div>
+        <p><strong>Fin du Tour :</strong> Le Momentum revient aux joueurs dès que le Combo est complété, quelle que soit la réussite ou l'échec des actions à l'intérieur.</p>
       </div>
 
-      <div class="callout">
-        <div class="callout-title">Résolution d'Échec pendant un Combo :</div>
-        <p>• <strong>Échec simple du monstre :</strong> Les joueurs gagnent tous 1 Espoir. Le Combo continue jusqu'à sa fin déclarée.<br>
-        • <strong>1 Naturel du monstre :</strong> Les joueurs gagnent tous 1 Espoir. Le Combo <strong>s'arrête net</strong>, le Momentum passe aux joueurs, et ils récupèrent les jetons de l'action ratée.<br>
-        • <strong>Fin du Tour :</strong> Le Momentum revient immédiatement aux joueurs dès que le Combo est complété.</p>
-      </div>
-    </section>
+      <!-- III.C -->
+      <div id="section-3-c" style="margin-top: 2rem;">
+        <h3>C. La Distance Narrative</h3>
+        <p>La distance est géré par des Zones Narratives pour la fluidité (Au Contact, Très Proche, Proche, Loin, Très Loin, Hors de portée), tout en conservant les distances métriques de D&D 5e pour la précision tactique.</p>
 
-    <!-- SECTION : DISTANCES NARRATIVES -->
-    <section id="distances">
-      <h2>X. Zones de Distance Narratives</h2>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Zone Narrative</th>
-              <th>Distance Métrique</th>
-              <th>Rôle Tactique & Repère Physique</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Au Contact</strong></td>
-              <td>0 m (Engagé)</td>
-              <td>Mêlée directe. Les figurines se touchent.</td>
-            </tr>
-            <tr>
-              <td><strong>Très Proche</strong></td>
-              <td>1,5 m à 4,5 m</td>
-              <td>Déplacement libre (engager/désengager). <em>Repère : Bord court d'une carte bancaire.</em></td>
-            </tr>
-            <tr>
-              <td><strong>Proche</strong></td>
-              <td>4,5 m à 15 m</td>
-              <td>Portée de tir/sort standard. Mouvement standard. <em>Repère : Longueur d'un crayon HB.</em></td>
-            </tr>
-            <tr>
-              <td><strong>Loin</strong></td>
-              <td>15 m à 45 m</td>
-              <td>Nécessite un effort de course (Dash) ou tirs à longue portée.</td>
-            </tr>
-            <tr>
-              <td><strong>Très Loin</strong></td>
-              <td>45 m à 90 m</td>
-              <td>Portée extrême, tirs d'artillerie ou téléportation.</td>
-            </tr>
-            <tr>
-              <td><strong>Hors de Portée</strong></td>
-              <td>> 90 m</td>
-              <td>Inatteignable en combat standard. Requiert un changement de scène ou un transit planaire.</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Zone Narrative</th>
+                <th>Distance Mètrique Typique (Suggestion)</th>
+                <th>Rôle Tactique</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Au Contact (Contact)</strong></td>
+                <td>0 m (Engagé)</td>
+                <td>Attaques au corps à corps directes. Les figurines se touchent.</td>
+              </tr>
+              <tr>
+                <td><strong>Très Proche (Very Close)</strong></td>
+                <td>1,5 m à 4,5 m</td>
+                <td>Déplacement facile pour engager ou désengager. = Bord court d'une carte bancaire.</td>
+              </tr>
+              <tr>
+                <td><strong>Proche (Close)</strong></td>
+                <td>4,5 m à 15 m</td>
+                <td>Idéal pour les sorts et les attaques à distance standards. Atteignable par un mouvement standard. = Longueur d un crayon hb standard</td>
+              </tr>
+              <tr>
+                <td><strong>Loin (Far)</strong></td>
+                <td>15 m à 45 m</td>
+                <td>Nécessite un effort de Mouvement complet (Dash) ou des attaques à longue portée.</td>
+              </tr>
+              <tr>
+                <td><strong>Très Loin (Very Far)</strong></td>
+                <td>45 m à 90 m (Suggestion)</td>
+                <td>Nécessite souvent un sort de téléportation ou des attaques à très longue portée.</td>
+              </tr>
+              <tr>
+                <td><strong>Hors de Portée (Out of Range)</strong></td>
+                <td>Plus de 90 m</td>
+                <td>Impossible à atteindre par une action de combat ou un mouvement normal. Nécessite généralement un Changement de Scène ou de la magie de Plan/Téléportation Supérieure.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   </main>
 
   <script>
-    // Highlight active link in sidebar on scroll
-    const sections = document.querySelectorAll('section, header');
+    // Suivi dynamique de la section active dans le menu
+    const sections = document.querySelectorAll('section, header, div[id^="section-"]');
     const navLinks = document.querySelectorAll('nav a');
 
     window.addEventListener('scroll', () => {
